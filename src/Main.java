@@ -25,16 +25,16 @@ public class Main {
         boolean fileExists = false;
         for (String fileName : files) {
             try {
-                Location location = getLocationByName(fileName.split("\\.")[0].replace("_", " "), locker, backpack, pencilCase);
-                if (location != null && loadInventoryFromFile(location, fileName)) {
-                    fileExists = true;
+                Location location = getLocationByName(fileName.split("\\.")[0].replace("_", " "), locker, backpack, pencilCase); //
+                if (location != null && loadInventoryFromFile(location, fileName)) { // getter
+                    fileExists = true; // setter
                 }
             } catch (IOException e) {
                 System.out.println("An error occurred while loading the inventory.");
             }
         }
 
-        if (!fileExists) { // populates with dummy data if no previous data is found
+        if (!fileExists) { // populates with dummy data if no previous data is found - setter
             System.out.println("There is no previous data to load.");
             // Initialize inventory items
             Inventory pencil = new Inventory("Pencil");
@@ -58,44 +58,44 @@ public class Main {
         programCommands:
         while (true) {
             try { // try block to catch any exceptions that occur during user input
-                System.out.println("Enter command (add/remove/move/view/export/quit):");
+                System.out.println("Enter command (add/remove/move/view/export/quit):"); // Input
                 String command = sc.nextLine();
 
                 // Process user commands
-                switch (command) {
+                switch (command) { // Process - different case yields different results
                     case "quit":
                         break programCommands;
                     case "add":
-                        while (true) {
+                        while (true) { // Process
                             Location location = selectLocation(sc, "Enter location (locker/backpack/pencil case):", locker, backpack, pencilCase);
                             if (location == null) continue;
 
-                            System.out.println("Enter item name:");
-                            String itemName = sc.nextLine();
+                            System.out.println("Enter item name:"); // Input
+                            String itemName = sc.nextLine(); // Process
 
-                            Inventory newItem = new Inventory(itemName);
-                            location.addInventory(newItem);
-                            System.out.println(itemName + " added to " + location.getName());
+                            Inventory newItem = new Inventory(itemName); // setter
+                            location.addInventory(newItem); // Output - creates a new object
+                            System.out.println(itemName + " added to " + location.getName()); // Output
 
-                            System.out.println("Do you want to add more items? (yes/no):");
+                            System.out.println("Do you want to add more items? (yes/no):"); // Input
                             String response = sc.nextLine();
 
-                            if (response.equalsIgnoreCase("no")) {
+                            if (response.equalsIgnoreCase("no")) { // Process
                                 break;
                             }
                         }
                         break;
-                    case "remove":
-                        while (true) {
-                            Location location = selectLocation(sc, "Enter location (locker/backpack/pencil case):", locker, backpack, pencilCase);
-                            if (location == null) continue;
+                    case "remove": // Input
+                        while (true) { // Process
+                            Location location = selectLocation(sc, "Enter location (locker/backpack/pencil case):", locker, backpack, pencilCase); // Input
+                            if (location == null) continue; // Process
 
-                            System.out.println("Enter item name:");
+                            System.out.println("Enter item name:"); // Input
                             String itemName = sc.nextLine();
 
-                            Inventory item = getItemByName(itemName, location.getInventory());
+                            Inventory item = getItemByName(itemName, location.getInventory()); // Process - checks if the item exists - getter
                             if (item == null) {
-                                System.out.println("Invalid item. Please try again.");
+                                System.out.println("Invalid item. Please try again."); // Output
                                 continue;
                             }
 
@@ -185,11 +185,11 @@ public class Main {
 
     /**
      * resource: javadoc comment tags - "https://ioflood.com/blog/javadoc-comments/#:~:text=Javadoc%20comments%20in%20Java%20are,and%20to%20your%20future%20self"
-     * <p>
+     *
      * Prompts the user to select a location and returns the selected location.
      *
-     * @param sc        The scanner to read user input - I use sc because its simpler (I am extremely lazy)
-     * @param prompt    The prompt to display to the user - Easier to understand from a code review perspective
+     * @param sc The scanner to read user input - I use sc because its simpler (I am extremely lazy)
+     * @param prompt The prompt to display to the user - Easier to understand from a code review perspective
      * @param locations The possible locations to select from e.g. locker, backpack, pencil case
      * @return The selected location, or null if the location is invalid - initially i found an error
      * where the program would crash if the location was written wrong, so I also had to add a validity
@@ -228,7 +228,7 @@ public class Main {
      *
      * @param name      The name of the item to find - for the move and remove commands, so the program doesn't crash if you select to run it on an item that does not exist
      * @param inventory The list of inventory items to search in - a for each loop to search through the inventory list
-     * @return The inventory item with the given name, or null if no  item exists.
+     * @return The inventory item with the given name, or null if no item exists.
      */
     private static Inventory getItemByName(String name, ArrayList<Inventory> inventory) {
         for (Inventory item : inventory) {
@@ -288,3 +288,19 @@ public class Main {
     }
 }
 
+/**
+ * Internal Documentation:
+ * <p>
+ * Main Class:
+ * The Main class is the entry point of the program. It handles the interaction with the user
+ * through a command-line interface, allowing the user to manage an inventory system across different locations
+ * (Locker, Backpack, and Pencil Case). The user can add, remove, move, view, and export items in these locations.
+ * <p>
+ * Location Class:
+ * The Location class represents a specific location (e.g., Locker, Backpack, Pencil Case) that contains an
+ * inventory of items. It provides an ArrayList and methods to manage the inventory within that location.
+ * <p>
+ * Inventory Class:
+ * The Inventory class represents an individual item that can be managed within different locations.
+ * It primarily "stores" the name of the item.
+ */
