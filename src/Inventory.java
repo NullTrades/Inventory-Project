@@ -3,7 +3,7 @@
     Title: Inventory Project
     Author: Osy Okocha
     Date: March 13, 2024
-    
+
 */
 
 public class Inventory {

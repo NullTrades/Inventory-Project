@@ -5,6 +5,23 @@
 
 */
 
+/**
+ * Internal Documentation:
+ * <p>
+ * Main Class:
+ * The Main class is the entry point of the program. It handles the interaction with the user
+ * through a command-line interface, allowing the user to manage an inventory system across different locations
+ * (Locker, Backpack, and Pencil Case). The user can add, remove, move, view, and export items in these locations.
+ * <p>
+ * Location Class:
+ * The Location class represents a specific location (e.g., Locker, Backpack, Pencil Case) that contains an
+ * inventory of items. It provides an ArrayList and methods to manage the inventory within that location.
+ * <p>
+ * Inventory Class:
+ * The Inventory class represents an individual item that can be managed within different locations.
+ * It primarily "stores" the name of the item.
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
@@ -288,19 +305,4 @@ public class Main {
     }
 }
 
-/**
- * Internal Documentation:
- * <p>
- * Main Class:
- * The Main class is the entry point of the program. It handles the interaction with the user
- * through a command-line interface, allowing the user to manage an inventory system across different locations
- * (Locker, Backpack, and Pencil Case). The user can add, remove, move, view, and export items in these locations.
- * <p>
- * Location Class:
- * The Location class represents a specific location (e.g., Locker, Backpack, Pencil Case) that contains an
- * inventory of items. It provides an ArrayList and methods to manage the inventory within that location.
- * <p>
- * Inventory Class:
- * The Inventory class represents an individual item that can be managed within different locations.
- * It primarily "stores" the name of the item.
- */
+
